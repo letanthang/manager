@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 import { 
   emailChanged, 
   passwordChanged, 
@@ -13,6 +15,26 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 
 //make
 class LoginForm extends Component {
+  componentWillMount() {
+    console.log('componentWillMount called.');
+  }
+  componentWillUpdate() {
+    console.log('componentWillUpdate called.');
+    console.log(this.props.user);
+    
+    
+    if (this.props.user) {
+     Actions.main();
+    }
+  }
+  componentDidUpdate() {
+    console.log('componentDidlUpdate called.');
+    console.log(this.props.user);
+
+    if (this.props.user) {
+     Actions.main();
+    }
+  }
   onEmailChange(text) {
     this.props.emailChanged(text);
   }

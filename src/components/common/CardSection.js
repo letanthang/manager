@@ -20,7 +20,8 @@ const styles = {
     padding: 5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    position: 'relative'
+    position: 'relative',
+    height: 40
   }
 };
 //make it avai

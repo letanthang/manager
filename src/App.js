@@ -8,7 +8,7 @@ import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 import { Header } from './components/common';
 import Router from './Router';
-
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 class App extends Component {
   componentWillMount() {
     const config = {
@@ -23,7 +23,7 @@ class App extends Component {
   }
   render() {
     return (
-      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+      <Provider store={store}>
         <View>
           <Router />
         </View>
