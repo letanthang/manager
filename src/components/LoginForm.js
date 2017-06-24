@@ -1,11 +1,12 @@
 //import
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { 
   emailChanged, 
   passwordChanged, 
-  loginUser 
+  loginUser,
+  logoutUser 
 } from '../actions';
 
 import { Card, CardSection, Input, Button, Spinner } from './common';
@@ -21,6 +22,9 @@ class LoginForm extends Component {
   onButtonPress() {
     const { email, password } = this.props;
     this.props.loginUser({ email, password });
+  }
+  onLogoutPress() {
+    this.props.logoutUser();
   }
   renderButton() {
     if (this.props.loading) {
@@ -40,7 +44,7 @@ class LoginForm extends Component {
       return (
         <Card>
           <CardSection>
-            <Button>Logout</Button>
+            <Button onPress={this.onLogoutPress.bind(this)}>Logout</Button>
           </CardSection>
         </Card>
       );
@@ -65,9 +69,12 @@ class LoginForm extends Component {
             value={this.props.password}
           />
         </CardSection>
-        <Text style={{ color: 'red' }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: 'red' }}>
           {this.props.error}
         </Text>
+        </View>
+        
           
         <CardSection>
           {this.renderButton()}  
@@ -83,4 +90,4 @@ const mapStateToProps = ({ auth }) => {
 };
 //avai
 export default connect(mapStateToProps, 
-{ emailChanged, passwordChanged, loginUser })(LoginForm);
+{ emailChanged, passwordChanged, loginUser, logoutUser })(LoginForm);

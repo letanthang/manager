@@ -1,5 +1,8 @@
 import firebase from 'firebase';
-import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, LOGIN_USER } from './type';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, LOGIN_USER_SUCCESS, LOGIN_USER_FAIL, 
+  LOGIN_USER,
+  LOGOUT_USER
+} from './type';
 
 export const emailChanged = (text) => {
   return {
@@ -39,4 +42,10 @@ export const loginUserFail = (dispatch) => {
   dispatch({
     type: LOGIN_USER_FAIL
   });
+};
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_USER
+  };
 };
