@@ -5,7 +5,7 @@ import { View } from 'react-native';
 //make comp
 const CardSection = (props) => {
   return (
-    <View style={styles.containerStyle}>
+    <View style={[styles.containerStyle, props.style]}>
       {props.children}
     </View>
   );
@@ -20,8 +20,7 @@ const styles = {
     padding: 5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    position: 'relative',
-    height: 40
+    position: 'relative'
   }
 };
 //make it avai
