@@ -16,11 +16,11 @@ import { Card, CardSection, Input, Button, Spinner } from './common';
 //make
 class LoginForm extends Component {
   componentWillMount() {
-    console.log('componentWillMount called.');
+    //console.log('componentWillMount called.');
   }
   componentWillUpdate() {
-    console.log('componentWillUpdate called.');
-    console.log(this.props.user);
+    //console.log('componentWillUpdate called.');
+    //console.log(this.props.user);
     
     
     if (this.props.user) {
@@ -28,8 +28,8 @@ class LoginForm extends Component {
     }
   }
   componentDidUpdate() {
-    console.log('componentDidlUpdate called.');
-    console.log(this.props.user);
+    //console.log('componentDidlUpdate called.');
+    //console.log(this.props.user);
 
     if (this.props.user) {
      Actions.main();
