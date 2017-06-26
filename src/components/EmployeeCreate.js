@@ -7,6 +7,12 @@ import EmployeeForm from './EmployeeForm';
 
 //make comp
 class EmployeeCreate extends Component {
+  componentWillMount() {
+    console.log('EmployeeCreate mount');
+  }
+  componentWillUnmount() {
+    console.log('EmployeeCreate unmount');
+  }
   onButtonPress() {
     const { name, phone, shift } = this.props;
     this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
