@@ -3,12 +3,13 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import Communications from 'react-native-communications';
 import { connect } from 'react-redux';
-import { Card, CardSection, Button } from './common';
-import { employeeUpdate, employeeSave } from '../actions';
+import { Card, CardSection, Button, Confirm } from './common';
+import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import EmployeeForm from './EmployeeForm';
 
 //make comp
 class EmployeeEdit extends Component {
+  state = { showModal: false }
   componentWillMount() {
     _.each(this.props.employee, (value, prop) => {
       this.props.employeeUpdate({ prop, value });
@@ -22,6 +23,12 @@ class EmployeeEdit extends Component {
   onTextPress() {
     const { phone, shift } = this.props;
     Communications.text(phone, `Your upcomming shift is on ${shift}`);
+  }
+  onAccept() {
+    this.props.employeeDelete({ uid: this.props.employee.uid });
+  }
+  onDecline() {
+    this.setState({ showModal: false });
   }
   render() {
     console.log(this.props.employee);
@@ -39,10 +46,18 @@ class EmployeeEdit extends Component {
           </Button>
         </CardSection>
         <CardSection>
-          <Button onPress={this.onFirePress.bind(this)}>
+          <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
             Fire
           </Button>
         </CardSection>
+
+        <Confirm
+          visible={this.state.showModal}
+          onAccept={this.onAccept.bind(this)}
+          onDecline={this.onDecline.bind(this)}
+        >
+          Are you sure you want to fire this employee?
+        </Confirm>
       </Card>
     );
   }
@@ -54,4 +69,4 @@ const mapStateToProps = (state) => {
   return { name, phone, shift };
 };
 //avai
-export default connect(mapStateToProps, { employeeUpdate, employeeSave })(EmployeeEdit);
+export default connect(mapStateToProps, { employeeUpdate, employeeSave, employeeDelete })(EmployeeEdit);
